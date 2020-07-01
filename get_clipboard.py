@@ -5,6 +5,8 @@ from collections import Counter
 
 item_list = []
 
+final_items = []
+
 def getClipboardText():
 
     ''' Get clipboard content
@@ -25,9 +27,15 @@ def exit_routine():
     '''
 
     final_list = Counter(item_list)
+
     for key, value in final_list.items():
-        
+        final_items.append(str(value) + "x " + str(key))
         print str(value) + "x " + str(key)
+
+    with open('output.txt', 'w') as f:
+        for y in final_items:
+            f.write(y + "\n")
+
     sys.exit()
 
 def add_item(item):
